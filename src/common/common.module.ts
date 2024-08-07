@@ -1,3 +1,4 @@
+import { VALIDATION_PIPE_OPTIONS } from './util/common.constants';
 import { Module, ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 
@@ -5,14 +6,7 @@ import { APP_PIPE } from '@nestjs/core';
   providers: [
     {
       provide: APP_PIPE,
-      useValue: new ValidationPipe({
-        whitelist: true,
-        forbidNonWhitelisted: true,
-        transformOptions: {
-          enableImplicitConversion: true, //Conversion happens to the type of the class, validation afterwards
-        },
-        // transform: true, transforms the dto into an instance of the class of the dto
-      }),
+      useValue: new ValidationPipe(VALIDATION_PIPE_OPTIONS),
     },
   ],
 })
